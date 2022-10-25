@@ -1,24 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react';
 
-const InputComponent = () => {
-    const [title, setTitle] = useState('')
+export const InputComponent = () => {
+  const [title, setTitle] = useState('');
 
-    const changeTitle = (e) => {
-        setTitle(e.target.value)
-    }
+  const changeTitle = (e) => {
+    setTitle(e.target.value);
+  };
 
-    const save = (e) => {
-        e.preventDefault()
-        props.addTodoItem(title)
-        setTitle('')
-    }
+  const save = (e) => {
+    e.preventDefault();
+    props.addTodoItem(title);
+    setTitle('');
+  };
 
   return (
     <form action="">
-        <input type="text" placeholder="タイトル" value={title} onChange={changeTitle} />
-        <button onclick={save}>保存</button>
+      <input
+        type="text"
+        placeholder="タイトル"
+        value={title}
+        onChange={changeTitle}
+      />
+      <button onclick={save}>保存</button>
     </form>
-  )
-}
-
-export default InputComponent
+  );
+};

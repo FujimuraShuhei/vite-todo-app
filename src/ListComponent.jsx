@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ListComponent = (props) => {
+export const ListComponent = (props) => {
   return (
     <div>
       <ul>
@@ -19,5 +19,3 @@ const ListComponent = (props) => {
     </div>
   );
 };
-
-export default ListComponent;

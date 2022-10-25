@@ -1,9 +1,13 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import InputComponent from '../InputComponent';
+import ListComponent from './ListComponent';
+import FilterComponent from './FilterComponent';
+import React from 'react'
 
-function App() {
+const App = () => {
   const [todoItems, setTodoItems] = useState([]);
-  return useEffect(() => {
+  useEffect(() => {
     async () => {
       setTodoItems([
         { id: 1, title: 'あああ', is_done: false },
@@ -14,15 +18,21 @@ function App() {
       ]);
     };
   });
-}
 
-const addTodoItem = (title) => {
-  setTodoItems([
-    ...todoItems,
-    { id: todoItems.length + 1, title: title, is_done: false },
-  ]);
+  const addTodoItem = (title) => {
+    setTodoItems([
+      ...todoItems,
+      { id: todoItems.length + 1, title: title, is_done: false },
+    ]);
+  };
+
+  return (
+    <div>
+      <InputComponent addTodoItem={addTodoItem} />
+      <FilterComponent />
+      <ListComponent />
+    </div>
+  );
 };
-
-<InputComponent addTodoItem={addTodoItem} />;
 
 export default App;
