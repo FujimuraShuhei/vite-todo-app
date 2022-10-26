@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export const InputComponent = () => {
+export const InputComponent = (props) => {
   const [title, setTitle] = useState('');
 
   const changeTitle = (e) => {
@@ -21,7 +21,7 @@ export const InputComponent = () => {
         value={title}
         onChange={changeTitle}
       />
-      <button onclick={save}>保存</button>
+      <button onClick={save}>保存</button>
     </form>
   );
 };

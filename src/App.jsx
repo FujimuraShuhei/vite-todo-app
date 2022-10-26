@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import InputComponent from '../InputComponent';
-import ListComponent from './ListComponent';
-import FilterComponent from './FilterComponent';
-import React from 'react'
+import { FilterComponent } from './FilterComponent';
+import { InputComponent } from './InputComponent';
+import { ListComponent } from './ListComponent';
+import React from 'react';
 
 const App = () => {
   const [todoItems, setTodoItems] = useState([]);
@@ -26,12 +26,31 @@ const App = () => {
     ]);
   };
 
+  const updateStatusTodoItem = (id) => {
+    setTodoItems(
+      todoItems.map((todoItem) => {
+        if (todoItem.id === id) {
+          todoItem.is_done = !todoItem.is_done;
+        }
+        return todoItem;
+      })
+    );
+  };
+
+  const removeTodoItem = (id) => {
+    setTodoItems(todoItems.filter(todoItem => todoItem.id !== id))
+  }
+
   return (
-    <div>
+    <>
       <InputComponent addTodoItem={addTodoItem} />
       <FilterComponent />
-      <ListComponent />
-    </div>
+      <ListComponent
+        todoItems={todoItems}
+        updateStatusTodoItem={updateStatusTodoItem}
+        removeTodoItem={removeTodoItem}
+      />
+    </>
   );
 };
 

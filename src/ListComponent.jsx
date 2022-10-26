@@ -8,10 +8,22 @@ export const ListComponent = (props) => {
           <li key={todoItem.id}>
             <span>{todoItem.title}</span>
             <span>
-              <input type="checkbox" checked={todoItem.is_done} />
+              <input
+                type="checkbox"
+                checked={todoItem.is_done}
+                onChange={e => {
+                  props.updateStatusTodoItem(todoItem.id);
+                }}
+              />
             </span>
             <span>
-              <button>削除</button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  props.removeTodoItem(todoItem.id);
+                }}>
+                削除
+              </button>
             </span>
           </li>
         ))}
