@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import { FilterComponent } from './FilterComponent';
 import { InputComponent } from './InputComponent';
@@ -7,17 +7,6 @@ import React from 'react';
 
 const App = () => {
   const [todoItems, setTodoItems] = useState([]);
-  useEffect(() => {
-    async () => {
-      setTodoItems([
-        { id: 1, title: 'あああ', is_done: false },
-        { id: 2, title: 'いいい', is_done: false },
-        { id: 3, title: 'ううう', is_done: false },
-        { id: 4, title: 'えええ', is_done: false },
-        { id: 5, title: 'おおお', is_done: false },
-      ]);
-    };
-  });
 
   const addTodoItem = (title) => {
     setTodoItems([
@@ -30,7 +19,7 @@ const App = () => {
     setTodoItems(
       todoItems.map((todoItem) => {
         if (todoItem.id === id) {
-          todoItem.is_done = !todoItem.is_done;
+          return { ...todoItem, is_done: !todoItem.is_done };
         }
         return todoItem;
       })
@@ -38,8 +27,8 @@ const App = () => {
   };
 
   const removeTodoItem = (id) => {
-    setTodoItems(todoItems.filter(todoItem => todoItem.id !== id))
-  }
+    setTodoItems(todoItems.filter((todoItem) => todoItem.id !== id));
+  };
 
   return (
     <>
